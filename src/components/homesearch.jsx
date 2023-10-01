@@ -31,7 +31,7 @@ export default function HomeSearch() {
       onSubmit={handleSubmit}
       className="flex border w-full max-w-[90%] mt-5 border-gray-200 px-5 py-3 rounded-full hover:shadow-md transition-shadow items-center focus-within:
       shadow-md sm:max-w-xl md:max-w-2xl">
-        <AiOutlineSearch className='text-xl text-gray-200 mr-3'/>
+        <AiOutlineSearch className='mr-3 text-xl text-gray-200'/>
         <input
         type='text'
         className='flex-grow outline-none focus:outline-none'
@@ -42,7 +42,7 @@ export default function HomeSearch() {
       </form>
       
       <div
-      className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-center mt-8"
+      className="flex flex-col justify-center mt-8 space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4"
       >
         <button
         className="btn"
@@ -52,7 +52,7 @@ export default function HomeSearch() {
         </button>
         <button
         onClick={randomSearch}
-        className="btn flex items-center justify-center"
+        className="flex items-center justify-center btn"
         >
           {
             randomSearchLoading ? (

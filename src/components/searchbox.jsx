@@ -5,18 +5,22 @@ import { RxCross2 } from "react-icons/rx"
 import { BsFillMicFill } from "react-icons/bs"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams, usePathname } from 'next/navigation'
 
 
 export default function SearchBox() {
+  const params = useParams();
   const router = useRouter();
+  const pathname = usePathname()
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get('searchTerm');
   const [term, setTerm] = useState(searchTerm || '');
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!term.trim()) return;
-    router.push(`/search/web?searchTerm=${term}`);  
+    console.log(pathname);
+    // router.push(`/search/${pathname === "/search/image" ? 'image' :  'web'}?searchTerm=${term}`);  
+    router.push(`${pathname === "/search/image" ? `/search/image?searchTerm=${term}`: `/search/web?searchTerm=${term}`}`)
 
   }
   return (

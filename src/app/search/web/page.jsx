@@ -3,8 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 
 export default async function WebSearchPage({ searchParams }) {
-  await new Promise(resolve=>setTimeout(resolve, 10000))
-   const res = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}`)
+  console.log(searchParams)
+   await new Promise(resolve=>setTimeout(resolve, 10000))
+   const res = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&start=${searchParams.start || 1}`)
    if (!res.ok) {
     throw new Error("Can't fetch data")
    }
@@ -14,7 +15,7 @@ export default async function WebSearchPage({ searchParams }) {
     <div>
       {
         !results  && 
-        <div className="text-center pt-10 flex justify-center items-center flex-col space-y-3">
+        <div className="flex flex-col items-center justify-center pt-10 space-y-3 text-center">
           <h1
           className="text-2xl"
           >No results found</h1>

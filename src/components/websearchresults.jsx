@@ -2,16 +2,15 @@
 import Parser from "html-react-parser"
 import Link from 'next/link'
 import React from 'react'
+import PaginationButtons from "./paginationbuttons"
 
 export default function WebSearchResults({ results }) {
-  console.log(results)
-  console.log("this works?")
   return (
     <div
-    className="w-full mx-auto max-w- px-3 pb-24 sm:pl-[5%] md:pl-[14%] lg:pl-52 text-sm"
+    className="w-full mx-auto px-3 pb-24 sm:pl-[5%] md:pl-[14%] lg:pl-52 text-sm"
     >
       <p
-      className="text-gray-500 text-sm mb-5 mt-3"
+      className="mt-3 mb-5 text-sm text-gray-500"
       >
          About { results.searchInformation?.formattedTotalResults } results
          ({ results.searchInformation?.formattedSearchTime } seconds )
@@ -19,21 +18,21 @@ export default function WebSearchResults({ results }) {
       {
         results.items.map(result=>(
           <div
-          className="mb-8 max-w-xl"
+          className="max-w-xl mb-8"
           key={result.cacheId}
           >
             <div
-            className="group flex flex-col"
+            className="flex flex-col group"
             >
               <Link
-              className="text-sm truncate w-fit"
+              className="text-sm truncate whitespace-normal w-fit"
               target="_blank"
               href={result.link}
               >
                 {result.formattedUrl}
               </Link>
               <Link
-              className="group-hover:underline decoration-blue-800 text-xl font-medium line-clamp-1 text-blue-800 w-fit "
+              className="text-xl font-medium text-blue-800 whitespace-nowrap group-hover:underline decoration-blue-800 line-clamp-1 w-fit"
               href={result.link}
               target="_blank"
               >
@@ -45,7 +44,8 @@ export default function WebSearchResults({ results }) {
             >{Parser(result.htmlSnippet)}</p>
           </div>
         ))
-      }   
+      } 
+        <PaginationButtons />
     </div>
   )
 }
